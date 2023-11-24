@@ -120,7 +120,7 @@ const Signup = () => {
           fullWidth
           color='success'
           type='submit'
-          loading='false'
+          loading={loading}
         >
           Signup
         </LoadingButton>

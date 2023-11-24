@@ -1,10 +1,8 @@
 import axios from 'axios'
 import queryString from 'query-string'
 
-const baseUrl = 'http://127.0.0.1:5000/api/v1/';
-
-//getinh the user token from localstorage---
-const getToken = () => localStorage.getItem('token');
+const baseUrl = 'http://127.0.0.1:5000/api/v1'
+const getToken = () => localStorage.getItem('token')
 
 const axiosClient = axios.create({
   baseURL: baseUrl,
@@ -23,12 +21,12 @@ axiosClient.interceptors.request.use(async config => {
 
 axiosClient.interceptors.response.use(response => {
   if (response && response.data) return response.data
-  return response;
+  return response
 }, err => {
   if (!err.response) {
-    return alert(err);
+    return alert(err)
   }
-  throw err.response;
+  throw err.response
 })
 
-export default axiosClient;
+export default axiosClient

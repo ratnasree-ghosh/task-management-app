@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import boardApi from "../api/boardApi";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
@@ -9,12 +9,13 @@ import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import { Box, Button, Divider, IconButton, TextField, Typography } from "@mui/material";
 import EmojiPicker from "../components/common/EmojiPicker";
 import {setBoards} from '../redux/features/boardSlice'
-
+import { setFavouriteList } from '../redux/features/favouriteSlice'
 let timer
 const timeout = 500
 
 const Board = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { boardId } = useParams();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -23,6 +24,7 @@ const Board = () => {
   const [icon, setIcon] = useState("");
 
   const boards = useSelector((state)=> state.board.value);
+  const favouriteList = useSelector((state) => state.favourites.value)
 
   useEffect(() => {
     const getBoard = async () => {
@@ -41,9 +43,27 @@ const Board = () => {
     getBoard();
   }, [boardId]);
 
-  const deleteBoard = () => {};
+  const deleteBoard = async() => {
+    try{
+      await boardApi.delete(boardId)
+      if (isFavourite) {
+        const newFavouriteList = favouriteList.filter(e => e.id !== boardId)
+        dispatch(setFavouriteList(newFavouriteList))
+      }
 
-  const addFavourite = () => {};
+      const newList = boards.filter(e => e.id !== boardId)
+      if (newList.length === 0) {
+        navigate('/boards')
+      } else {
+        navigate(`/boards/${newList[0].id}`)
+      }
+      dispatch(setBoards(newList))
+    }catch(err){
+      alert(err)
+    }
+  };
+
+  
 
   const updateTitle = async(e) => {
     clearTimeout(timer)
@@ -54,12 +74,12 @@ const Board = () => {
     const index = temp.findIndex(e => e.id === boardId)
     temp[index] = { ...temp[index], title: newTitle }
 
-    // if (isFavourite) {
-    //   let tempFavourite = [...favouriteList]
-    //   const favouriteIndex = tempFavourite.findIndex(e => e.id === boardId)
-    //   tempFavourite[favouriteIndex] = { ...tempFavourite[favouriteIndex], title: newTitle }
-    //   dispatch(setFavouriteList(tempFavourite))
-    // }
+    if (isFavourite) {
+      let tempFavourite = [...favouriteList]
+      const favouriteIndex = tempFavourite.findIndex(e => e.id === boardId)
+      tempFavourite[favouriteIndex] = { ...tempFavourite[favouriteIndex], title: newTitle }
+      dispatch(setFavouriteList(tempFavourite))
+    }
 
     dispatch(setBoards(temp))
 
@@ -90,12 +110,12 @@ const Board = () => {
     const index = temp.findIndex(e => e.id === boardId)
     temp[index] = { ...temp[index], icon: newIcon }
 
-    // if (isFavourite) {
-    //   let tempFavourite = [...favouriteList]
-    //   const favouriteIndex = tempFavourite.findIndex(e => e.id === boardId)
-    //   tempFavourite[favouriteIndex] = { ...tempFavourite[favouriteIndex], icon: newIcon }
-    //   dispatch(setFavouriteList(tempFavourite))
-    // }
+    if (isFavourite) {
+      let tempFavourite = [...favouriteList]
+      const favouriteIndex = tempFavourite.findIndex(e => e.id === boardId)
+      tempFavourite[favouriteIndex] = { ...tempFavourite[favouriteIndex], icon: newIcon }
+      dispatch(setFavouriteList(tempFavourite))
+    }
 
     setIcon(newIcon)
     dispatch(setBoards(temp))
@@ -103,10 +123,27 @@ const Board = () => {
       await boardApi.update(boardId, { icon: newIcon })
     } catch (err) {
       alert(err)
+      console.log(err);
     }
   }
 
-  
+  const addFavourite = async () => {
+    try {
+      const board = await boardApi.update(boardId, { favourite: !isFavourite })
+      let newFavouriteList = [...favouriteList]
+      if (isFavourite) {
+        newFavouriteList = newFavouriteList.filter(e => e.id !== boardId)
+      } else {
+        newFavouriteList.unshift(board)
+      }
+      dispatch(setFavouriteList(newFavouriteList))
+      setIsFavourite(!isFavourite)
+      
+    } catch (err) {
+      alert(err)
+      console.log(err);
+    }
+  }
 
   return (
     <>

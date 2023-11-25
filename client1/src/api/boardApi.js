@@ -6,7 +6,7 @@ const boardApi = {
   updatePositoin: (params) => axiosClient.put('boards', params),
   getOne: (id) => axiosClient.get(`boards/${id}`),
 //   delete: (id) => axiosClient.delete(`boards/${id}`),
-//   update: (id, params) => axiosClient.put(`boards/${id}`, params),
+  update: (id, params) => axiosClient.put(`boards/${id}`, params),
 //   getFavourites: () => axiosClient.get('boards/favourites'),
 //   updateFavouritePosition: (params) => axiosClient.put('boards/favourites', params)
 }

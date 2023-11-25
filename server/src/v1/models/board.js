@@ -14,12 +14,12 @@ const boardSchema = new Schema({
   },
   title: {
     type: String,
-    default: 'Untitled'
+    default: 'Untitled Tasks Board'
   },
   description: {
     type: String,
     default: `Add description here
-    🟢 You can add multiline description
+    🟢 You can tasks board description here
     🟢 Let's start...`
   },
   position: {

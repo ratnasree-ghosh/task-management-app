@@ -11,7 +11,8 @@ const sectionSchema = new Schema({
   title: {
     type: String,
     default: ''
-  }
+  },
+  
 }, schemaOptions)
 
 module.exports = mongoose.model('Section', sectionSchema)

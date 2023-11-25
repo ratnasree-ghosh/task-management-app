@@ -1,127 +1,4 @@
-// import { Box, Button, Typography, Divider, TextField, IconButton, Card } from '@mui/material'
-// import { useEffect, useState } from 'react'
-// import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd'
-// import AddOutlinedIcon from '@mui/icons-material/AddOutlined'
-// import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined'
-// import sectionApi from '../../api/sectionApi'
 
-
-
-// const TaskBoard = props => {
-//     const boardId = props.boardId
-//     const [data, setData] = useState([])
-
-//     useEffect(() => {
-//         setData(props.data)
-//       }, [props.data])
-
-//   const onDragEnd = () => {};
-
-//   const createSection = async () => {
-//     try {
-//       const section = await sectionApi.create(boardId)
-//       setData([...data, section])
-//     } catch (err) {
-//       alert(err)
-//     }
-//   }
-
-//   return (
-//     <>
-//       <Box sx={{
-//         display: 'flex',
-//         alignItems: 'center',
-//         justifyContent: 'space-between'
-//       }}>
-//         <Button onClick={createSection}>
-//           Add section
-//         </Button>
-//         <Typography variant='body2' fontWeight='700'>
-//           {data.length} Sections
-//         </Typography>
-//       </Box>
-//       <Divider sx={{ margin: '10px 0' }} />
-//       <DragDropContext onDragEnd={onDragEnd}>
-//         <Box sx={{
-//           display: 'flex',
-//           alignItems: 'flex-start',
-//           width: 'calc(100vw - 400px)',
-//           overflowX: 'auto'
-//         }}>
-//           {
-//           data.map(section => {
-//             // {console.log(section)}
-//             <div key={section.id} style={{ width: "300px" }}>
-//               <Droppable key={section.id} droppableId={section.id}>
-//                 {(provided) => {
-//                   <Box
-//                     ref={provided.innerRef}
-//                     {...provided.droppableProps}
-//                     sx={{
-//                       width: "300px",
-//                       padding: "10px",
-//                       marginRight: "10px",
-//                     }}
-//                   >
-//                     <Box
-//                       sx={{
-//                         display: "flex",
-//                         alignItems: "center",
-//                         justifyContent: "space-between",
-//                         marginBottom: "10px",
-//                       }}
-//                     >
-//                        <TextField
-//                           value={section.title}
-//                         //   onChange={(e) => updateSectionTitle(e, section.id)}
-//                           placeholder='Untitled'
-//                           variant='outlined'
-//                           sx={{
-//                             flexGrow: 1,
-//                             '& .MuiOutlinedInput-input': { padding: 0 },
-//                             '& .MuiOutlinedInput-notchedOutline': { border: 'unset ' },
-//                             '& .MuiOutlinedInput-root': { fontSize: '1rem', fontWeight: '700' }
-//                           }}
-//                         /> 
-//                         <IconButton
-//                           variant='outlined'
-//                           size='small'
-//                           sx={{
-//                             color: 'gray',
-//                             '&:hover': { color: 'green' }
-//                           }}
-//                         //   onClick={() => createTask(section.id)}
-//                         >
-//                           <AddOutlinedIcon />
-//                         </IconButton>
-
-//                         <IconButton
-//                           variant='outlined'
-//                           size='small'
-//                           sx={{
-//                             color: 'gray',
-//                             '&:hover': { color: 'red' }
-//                           }}
-//                         //   onClick={() => deleteSection(section.id)}
-//                         >
-//                           <DeleteOutlinedIcon />
-//                         </IconButton>
-//                     </Box>
-//                     {
-//                       /*tasks section */  
-//                     }
-//                   </Box>
-//                 }}
-//               </Droppable>
-//             </div>;
-//           })}
-//         </Box>
-//       </DragDropContext>
-//     </>
-//   );
-// };
-
-// export default TaskBoard;
 
 import { Box, Button, Typography, Divider, TextField, IconButton, Card } from '@mui/material'
 import { useEffect, useState } from 'react'
@@ -140,9 +17,17 @@ const TaskBoard = props => {
   const [data, setData] = useState([])
   const [selectedTask, setSelectedTask] = useState(undefined)
 
+
+
+  //real---
+
   useEffect(() => {
     setData(props.data)
+     
   }, [props.data])
+
+  
+  
 
   const onDragEnd = async ({ source, destination }) => {
     if (!destination) return
@@ -181,14 +66,20 @@ const TaskBoard = props => {
     }
   }
 
-  const createSection = async () => {
-    try {
-      const section = await sectionApi.create(boardId)
-      setData([...data, section])
-    } catch (err) {
-      alert(err)
+  
+
+  
+    const createSection = async () => {
+      try {
+        const section = await sectionApi.create(boardId)
+        
+        setData([...data, section])
+      } catch (err) {
+        alert(err)
+      }
     }
-  }
+  
+  
 
   const deleteSection = async (sectionId) => {
     try {
@@ -282,10 +173,15 @@ const TaskBoard = props => {
                         justifyContent: 'space-between',
                         marginBottom: '10px'
                       }}>
+
+                      {/* {setState({...state, name: "To-do"})} */}
+
                         <TextField
                           value={section.title}
                           onChange={(e) => updateSectionTitle(e, section.id)}
-                          placeholder='Untitled'
+
+                         
+                          placeholder='Untitled Task Category'
                           variant='outlined'
                           sx={{
                             flexGrow: 1,
@@ -316,6 +212,8 @@ const TaskBoard = props => {
                         >
                           <DeleteOutlinedIcon />
                         </IconButton>
+                        
+
                       </Box>
                       {/* tasks */}
                       {
@@ -334,8 +232,14 @@ const TaskBoard = props => {
                                 onClick={() => setSelectedTask(task)}
                               >
                                 <Typography>
-                                  {task.title === '' ? 'Untitled' : task.title}
+                                  {task.title === '' ? 'Untitled Tasks' : task.title}
+                                  
                                 </Typography>
+                                <Typography>
+                                {task.dueDate === '' ? '' : "Due Date- " + task.dueDate}
+                                </Typography>
+
+                                
                               </Card>
                             )}
                           </Draggable>

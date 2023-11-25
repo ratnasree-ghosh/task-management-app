@@ -16,6 +16,12 @@ const taskSchema = new Schema({
     type: String,
     default: ''
   },
+
+  dueDate: {
+    type: String,
+    default: ''
+  },
+
   position: {
     type: Number
   }

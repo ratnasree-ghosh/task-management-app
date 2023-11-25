@@ -41,11 +41,12 @@ const Login = () => {
       navigate('/')
     } catch (err) {
       const errors = err.data.errors
+      console.log(errors);
       errors.forEach(e => {
-        if (e.path === 'username') {
+        if (e.param === 'username') {
           setUsernameErrText(e.msg)
         }
-        if (e.path === 'password') {
+        if (e.param === 'password') {
           setPasswordErrText(e.msg)
         }
       })

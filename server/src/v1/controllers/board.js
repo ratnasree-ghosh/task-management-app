@@ -43,6 +43,7 @@ exports.updatePosition = async (req, res) => {
 exports.getOne = async (req, res) => {
   const { boardId } = req.params
   try {
+    console.log(req.user._id);
     const board = await Board.findOne({ user: req.user._id, _id: boardId })
     if (!board) return res.status(404).json('Board not found')
     const sections = await Section.find({ board: boardId })

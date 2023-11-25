@@ -11,6 +11,7 @@ exports.create = async (req, res) => {
     })
     res.status(201).json(board)
   } catch (err) {
+    console.log(err);
     res.status(500).json(err)
   }
 }
@@ -41,7 +42,7 @@ exports.updatePosition = async (req, res) => {
 }
 
 exports.getOne = async (req, res) => {
-  const { boardId } = req.params
+  const { boardId } = req.params /*params*/ 
   try {
     console.log(req.user._id);
     const board = await Board.findOne({ user: req.user._id, _id: boardId })
@@ -59,7 +60,7 @@ exports.getOne = async (req, res) => {
 }
 
 exports.update = async(req,res)=>{
-  const { boardId } = req.params
+  const { boardId } = req.params /*params*/ 
   const { title, description, favourite } = req.body
 
   try{
@@ -125,7 +126,7 @@ exports.updateFavouritePosition = async(req,res)=>{
 }
 
 exports.delete = async(req,res)=>{
-  const {boardId} = req.params;
+  const {boardId} = req.params; /*params*/
   try{
     const sections = await Section.find({ board: boardId })
     for (const section of sections) {

@@ -6,10 +6,11 @@ import boardApi from "../api/boardApi";
 import DeleteOutlinedIcon from "@mui/icons-material/DeleteOutlined";
 import StarBorderOutlinedIcon from "@mui/icons-material/StarBorderOutlined";
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
-import { Box, Button, Divider, IconButton, TextField, Typography } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
 import EmojiPicker from "../components/common/EmojiPicker";
 import {setBoards} from '../redux/features/boardSlice'
 import { setFavouriteList } from '../redux/features/favouriteSlice'
+import TaskBoard from "../components/common/TaskBoard";
 let timer
 const timeout = 500
 
@@ -198,20 +199,8 @@ const Board = () => {
         </Box>
         
         <Box>
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Button>Add Section</Button>
-            <Typography varient="body2" fontWeight="700">
-              {sections.length} sections
-            </Typography>
-          </Box>
-          <Divider sx={{margin: '10px 0'}}/>
           {/* Task Board */ }
+          <TaskBoard data={sections} boardId={boardId}/>
         </Box>
       </Box>
     </>

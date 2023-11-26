@@ -16,7 +16,7 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import taskApi from "../../api/taskApi";
 
-import "../../css/custom-editor.css";
+// import "../../css/custom-editor.css";
 
 
 const modalStyle = {

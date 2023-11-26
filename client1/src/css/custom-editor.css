@@ -4,7 +4,7 @@
   outline: none;
 } */
 
-.ck.ck-editor__main > .ck-editor__editable {
+.ck-editor__main > .ck-editor__editable {
   background: black !important;
   
 }

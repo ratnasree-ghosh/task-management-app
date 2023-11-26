@@ -18,10 +18,6 @@ import taskApi from "../../api/taskApi";
 
 import "../../css/custom-editor.css";
 
-// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { DateField } from '@mui/x-date-pickers/DateField';
 
 const modalStyle = {
   outline: "none",
@@ -122,8 +118,8 @@ const TaskModal = (props) => {
   const updateContent = async (event, editor) => {
     clearTimeout(timer);
     const data = editor.getData();
-    console.log(data);
-    console.log({ isModalClosed });
+    // console.log(data);
+    // console.log({ isModalClosed });
 
     if (!isModalClosed) {
       timer = setTimeout(async () => {
@@ -189,7 +185,7 @@ const TaskModal = (props) => {
             />
 
          
-            <label for="duedate" >Due Date:</label>
+            <label htmlFor="duedate" >Due Date:</label>
             <input
               type="date"
               id="dueDate"

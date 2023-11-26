@@ -49,6 +49,10 @@ const Login = () => {
         if (e.param === 'password') {
           setPasswordErrText(e.msg)
         }
+
+        if(e.path==='password'){
+          setPasswordErrText(e.msg);
+        }
       })
       setLoading(false)
     }

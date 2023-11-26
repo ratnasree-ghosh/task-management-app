@@ -19,7 +19,7 @@ const boardSchema = new Schema({
   description: {
     type: String,
     default: `Add description here
-    🟢 You can tasks board description here
+    🟢 You can add tasks board description here
     🟢 Let's start...`
   },
   position: {

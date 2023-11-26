@@ -38,12 +38,13 @@ const Board = () => {
         setIsFavourite(res.favourite);
         setIcon(res.icon);
       } catch (err) {
-        alert(err);
+        //if any boardId is generating but not the DB we are loging the error and navigate it to the "/boards"--
+        navigate("/boards");
         console.log(err);
       }
     };
     getBoard();
-  }, [boardId]);
+  }, [boardId,navigate]);
 
   const deleteBoard = async() => {
     try{

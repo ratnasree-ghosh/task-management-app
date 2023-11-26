@@ -1,13 +1,13 @@
-/* .ck.ck-editor__main > .ck-editor__editable {
+.ck.ck-editor__main > .ck-editor__editable {
   background-color: transparent;
   border: none;
   outline: none;
-} */
+}
 
-.ck-editor__main > .ck-editor__editable.p {
+/* .ck-editor__main > .ck-editor__editable.p {
   color: black !important;
   
-}
+} */
 
 /* .ck-editor__main > .ck-editor__editable {
   background: black !important;

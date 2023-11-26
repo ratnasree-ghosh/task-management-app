@@ -46,27 +46,27 @@ const Board = () => {
     getBoard();
   }, [boardId,navigate]);
 
-  const deleteBoard = async() => {
-    try{
-      await boardApi.delete(boardId)
-      if (isFavourite) {
-        const newFavouriteList = favouriteList.filter(e => e.id !== boardId)
-        dispatch(setFavouriteList(newFavouriteList))
-      }
+  const onIconChange = async (newIcon) => {
+    let temp = [...boards]
+    const index = temp.findIndex(e => e.id === boardId)
+    temp[index] = { ...temp[index], icon: newIcon }
 
-      const newList = boards.filter(e => e.id !== boardId)
-      if (newList.length === 0) {
-        navigate('/boards')
-      } else {
-        navigate(`/boards/${newList[0].id}`)
-      }
-      dispatch(setBoards(newList))
-    }catch(err){
-      alert(err)
+    if (isFavourite) {
+      let tempFavourite = [...favouriteList]
+      const favouriteIndex = tempFavourite.findIndex(e => e.id === boardId)
+      tempFavourite[favouriteIndex] = { ...tempFavourite[favouriteIndex], icon: newIcon }
+      dispatch(setFavouriteList(tempFavourite))
     }
-  };
 
-  
+    setIcon(newIcon)
+    dispatch(setBoards(temp))
+    try {
+      await boardApi.update(boardId, { icon: newIcon })
+    } catch (err) {
+      alert(err)
+      
+    }
+  }
 
   const updateTitle = async(e) => {
     clearTimeout(timer)
@@ -108,28 +108,6 @@ const Board = () => {
     }, timeout);
   };
 
-  const onIconChange = async (newIcon) => {
-    let temp = [...boards]
-    const index = temp.findIndex(e => e.id === boardId)
-    temp[index] = { ...temp[index], icon: newIcon }
-
-    if (isFavourite) {
-      let tempFavourite = [...favouriteList]
-      const favouriteIndex = tempFavourite.findIndex(e => e.id === boardId)
-      tempFavourite[favouriteIndex] = { ...tempFavourite[favouriteIndex], icon: newIcon }
-      dispatch(setFavouriteList(tempFavourite))
-    }
-
-    setIcon(newIcon)
-    dispatch(setBoards(temp))
-    try {
-      await boardApi.update(boardId, { icon: newIcon })
-    } catch (err) {
-      alert(err)
-      console.log(err);
-    }
-  }
-
   const addFavourite = async () => {
     try {
       const board = await boardApi.update(boardId, { favourite: !isFavourite })
@@ -148,6 +126,27 @@ const Board = () => {
     }
   }
 
+  const deleteBoard = async() => {
+    try{
+      await boardApi.delete(boardId)
+      if (isFavourite) {
+        const newFavouriteList = favouriteList.filter(e => e.id !== boardId)
+        dispatch(setFavouriteList(newFavouriteList))
+      }
+
+      const newList = boards.filter(e => e.id !== boardId)
+      if (newList.length === 0) {
+        navigate('/boards')
+      } else {
+        navigate(`/boards/${newList[0].id}`)
+      }
+      dispatch(setBoards(newList))
+    }catch(err){
+      alert(err)
+    }
+  };
+
+  
   return (
     <>
       <Box

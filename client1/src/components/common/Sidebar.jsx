@@ -16,7 +16,6 @@ import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import assets from "../../assets/index";
 import boardApi from "../../api/boardApi";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-// import FavouriteList from './FavouriteList'
 import { setBoards } from "../../redux/features/boardSlice";
 import FavouriteList from "./FavouriteList";
 

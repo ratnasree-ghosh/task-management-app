@@ -18,12 +18,12 @@ import TaskModal from "./TaskModal";
 let timer;
 const timeout = 500;
 
-const TaskBoard = (props) => {
+const TaskBoard = props => {
   const boardId = props.boardId;
   const [data, setData] = useState([]);
   const [selectedTask, setSelectedTask] = useState(undefined);
 
-  //real---
+  
 
   useEffect(() => {
     setData(props.data);
@@ -71,7 +71,6 @@ const TaskBoard = (props) => {
   const createSection = async () => {
     try {
       const section = await sectionApi.create(boardId);
-
       setData([...data, section]);
     } catch (err) {
       alert(err);
@@ -136,14 +135,7 @@ const TaskBoard = (props) => {
     setData(newData);
   };
 
-  // const deleteTask = async (task) => {
-  //   try {
-  //     await taskApi.delete(boardId, task.id);
-
-  //   } catch (err) {
-  //     alert(err);
-  //   }
-  // };
+  
 
   return (
     <>
@@ -271,7 +263,7 @@ const TaskBoard = (props) => {
                               >
                                 <DeleteOutlinedIcon />
                               </IconButton>
-                              {/*onClick={(e) => deleteTask(e)} */}
+                              
                             </span>
                             <Typography>
                                 {task.dueDate === ""

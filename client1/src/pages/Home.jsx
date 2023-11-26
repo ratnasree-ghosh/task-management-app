@@ -11,28 +11,6 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
-
-  // useEffect(() => {
-  //   const getBoard = async () => {
-  //     try {
-  //       if(boardId){
-  //         const res = await boardApi.getOne(boardId);
-  //         console.log('coming from home.jsx'+res);
-  //         dispatch(setBoards([res]));
-  //         navigate(`/boards/${res.id}`);
-
-  //       }else{
-  //         navigate('/boards');
-  //       }
-        
-        
-  //     } catch (err) {
-        
-  //       console.log(err);
-  //     }
-  //   };
-  //   getBoard();
-  // }, [boardId]);
    
 
   const createBoard = async () => {

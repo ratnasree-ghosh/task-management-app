@@ -2,14 +2,13 @@ import { ListItem, Typography, ListItemButton, Box } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import boardApi from "../../api/boardApi";
 import { setFavouriteList } from "../../redux/features/favouriteSlice";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
 const FavouriteList = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const list = useSelector((state) => state.favourites.value);
   const [activeIndex, setActiveIndex] = useState(0);
   const { boardId } = useParams();

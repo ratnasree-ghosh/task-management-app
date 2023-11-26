@@ -118,9 +118,6 @@ const TaskModal = (props) => {
   const updateContent = async (event, editor) => {
     clearTimeout(timer);
     const data = editor.getData();
-    // console.log(data);
-    // console.log({ isModalClosed });
-
     if (!isModalClosed) {
       timer = setTimeout(async () => {
         try {

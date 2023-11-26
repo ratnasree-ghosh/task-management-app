@@ -17,25 +17,15 @@
   border: none;
 }
 
-/* .ck-editor__main > .ck-editor__editable.p {
-  color: black !important;
-  
-} */
-
-/* .ck-editor__main > .ck-editor__editable {
-  background: black !important;
-  
-}
-
 .ck.ck-editor__main > .ck-editor__editable.ck-focused {
   border: none;
 }
-
 .ck.ck-toolbar .ck.ck-toolbar__separator {
   background-color: transparent;
 }
 
-.ck.ck-toolbar.ck-toolbar_grouping {
+
+.ck-toolbar.ck-toolbar_grouping {
   background-color: transparent;
   border: none;
 }
@@ -45,6 +35,18 @@
   color: gray;
   background-color: transparent;
 }
+/* 
+
+
+
+
+
+.ck.ck-toolbar.ck-toolbar_grouping {
+  background-color: transparent;
+  border: none;
+}
+
+
 
 .ck.ck-button:hover,
 .ck.ck-button.ck-off:hover,

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import queryString from 'query-string'
 
-const baseUrl = 'https://task-backend-f7ys.onrender.com/api/v1'
+const baseUrl = process.env.REACT_APP_BACKEND_URL;
 const getToken = () => localStorage.getItem('token')
 
 const axiosClient = axios.create({

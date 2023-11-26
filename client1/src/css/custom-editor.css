@@ -1,5 +1,6 @@
-.ck.ck-editor__main > .ck-editor__editable {
-  background-color: transparent;
+ .ck-editor__editable {
+  background-color: white !important;
+  color: black !important;
   border: none;
   outline: none;
 }

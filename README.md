@@ -12,7 +12,7 @@ User Login Page-
 
 ![task-img-3](https://github.com/ratnasree-ghosh/task-management-app/assets/86732136/197c2e1b-4b93-4f10-94cc-e86ce237f114)
 
-User Singup Page-
+User Signup Page-
 
 ![task-img-4](https://github.com/ratnasree-ghosh/task-management-app/assets/86732136/ed8560a9-86a5-4f28-b771-fc03f325cd55)
 

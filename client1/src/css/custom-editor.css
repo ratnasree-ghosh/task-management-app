@@ -4,7 +4,12 @@
   outline: none;
 } */
 
-.ck-editor__main > .ck-editor__editable {
+.ck-editor__main > .ck-editor__editable.p {
+  color: black !important;
+  
+}
+
+/* .ck-editor__main > .ck-editor__editable {
   background: black !important;
   
 }
@@ -56,6 +61,6 @@
 
 .ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
   border-color: black;
-}
+} */
 
 
